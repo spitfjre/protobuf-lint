@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_string_check_utf8 = true;
+
+package io.swagger.petstore.v2;
+
+import "google/protobuf/empty.proto";
+import "io/swagger/petstore/v2/user.proto";
+
+message CreateUsersRequest {
+  repeated User users = 1;
+}
+
+message GetUserRequest {
+  string username = 1;
+}
+
+message GetUserResponse {
+  User user = 1;
+}
+
+message UpdateUserRequest {
+  string username = 1;
+  User user = 2;
+}
+
+message DeleteUserRequest{
+  string username = 1;
+}
+
+message LoginUserRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginUserResponse {
+  string token = 1;
+}
+
+message CreateUserRequest {
+  User user = 1;
+}
+
+// Operations about user
+service UserService {
+  // Creates list of users with given input array
+  rpc CreateUsers (CreateUsersRequest) returns (google.protobuf.Empty);
+
+  // Get user by user name
+  rpc GetUser (GetUserRequest)  returns (GetUserResponse);
+
+  // Updated user
+  rpc UpdateUser (UpdateUserRequest) returns (google.protobuf.Empty);
+
+  // Delete user
+  rpc DeleteUser (DeleteUserRequest) returns (google.protobuf.Empty);
+
+  // Logs user into the system
+  rpc LoginUser (LoginUserRequest) returns (LoginUserResponse);
+
+  // Logs out current logged in user session
+  rpc LogoutUser (google.protobuf.Empty) returns (google.protobuf.Empty);
+
+  // Create user
+  rpc CreateUser (CreateUserRequest) returns (google.protobuf.Empty);
+}

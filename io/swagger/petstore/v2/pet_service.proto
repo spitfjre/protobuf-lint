@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_string_check_utf8 = true;
+
+package io.swagger.petstore.v2;
+
+import "google/protobuf/empty.proto";
+import "io/swagger/petstore/v2/pet.proto";
+
+message UploadImageRequest {
+  int64 pet_id = 1;
+  string additional_metadata = 2;
+  bytes file = 3;
+}
+
+message UploadImageResponse {
+  int32 code = 1;
+  string type = 2;
+  string message = 3;
+}
+
+message AddPetRequest {
+  Pet pet = 1;
+}
+
+message UpdatePetRequest {
+  Pet pet = 1;
+}
+
+message FindPetsByStatusRequest {
+  repeated Pet.Status statuses = 1;
+}
+
+message FindPetsByStatusResponse {
+  repeated Pet pets = 1;
+}
+
+message FindPetsByTagsRequest {
+  repeated string tags = 1;
+}
+
+message FindPetsByTagsResponse {
+  repeated Pet pets = 1;
+}
+
+message FindPetRequest {
+  int64 pet_id = 1;
+}
+
+message FindPetResponse {
+  Pet pet = 1;
+}
+
+message UpdatePetWithFormDataRequest {
+  int64 pet_id = 1;
+  string name = 2;
+  Pet.Status status = 3;
+}
+
+message DeletePetRequest {
+  int64 pet_id = 1;
+}
+
+// Everything about your pets
+service PetService {
+  // Uploads an image
+  rpc UploadImage (UploadImageRequest) returns (UploadImageResponse);
+
+  // Add a new pet to the store
+  rpc AddPet (AddPetRequest) returns (google.protobuf.Empty);
+
+  // Update an existing pet
+  rpc UpdatePet (UpdatePetRequest) returns (google.protobuf.Empty);
+
+  // Finds pets by status
+  rpc FindPetsByStatus (FindPetsByStatusRequest) returns (FindPetsByStatusResponse);
+
+  // Finds pets by tags
+  rpc FindPetsByTags (FindPetsByTagsRequest) returns (FindPetsByTagsResponse) {
+    option deprecated = true;
+  };
+
+  // Find pet by id
+  rpc FindPet (FindPetRequest) returns (FindPetResponse);
+
+  // Updates a pet in the store with form data
+  rpc UpdatePetWithFormData (UpdatePetWithFormDataRequest) returns (google.protobuf.Empty);
+
+  // Deletes a pet
+  rpc DeletePet (DeletePetRequest) returns (google.protobuf.Empty);
+}

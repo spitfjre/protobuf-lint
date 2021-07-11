@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_string_check_utf8 = true;
+
+package io.swagger.petstore.v2;
+
+import "io/swagger/petstore/v2/category.proto";
+import "io/swagger/petstore/v2/tag.proto";
+
+message Pet {
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+    STATUS_AVAILABLE = 1;
+    STATUS_PENDING = 2;
+    STATUS_SOLD = 3;
+  }
+
+  int64 id = 1;
+  Category category = 2;
+  string name = 3;
+  repeated string photo_urls = 4;
+  repeated Tag tags = 5;
+  Status status = 6;
+}

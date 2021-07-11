@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_string_check_utf8 = true;
+
+package io.swagger.petstore.v2;
+
+message Category {
+  int64 id = 1;
+  string name = 2;
+}

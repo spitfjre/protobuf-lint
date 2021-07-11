@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_string_check_utf8 = true;
+
+package io.swagger.petstore.v2;
+
+import "google/protobuf/empty.proto";
+import "io/swagger/petstore/v2/order.proto";
+
+message GetInventoryResponse {
+  map<string, int32> inventory_by_status = 1;
+}
+
+message CreateOrderRequest {
+  Order order = 1;
+}
+
+message CreateOrderResponse {
+  Order order = 1;
+}
+
+message GetOrderRequest {
+  int64 order_id = 1;
+}
+
+message GetOrderResponse {
+  Order order = 1;
+}
+
+message DeleteOrderRequest {
+  int64 order_id = 1;
+}
+
+// Access to petstore orders
+service StoreService {
+  // Returns pet inventories by status
+  rpc GetInventory (google.protobuf.Empty) returns (GetInventoryResponse);
+
+  // Place an order for a pet
+  rpc CreateOrder (CreateOrderRequest) returns (CreateOrderResponse);
+
+  // Find purchase order by id
+  rpc GetOrder (GetOrderRequest) returns (GetOrderResponse);
+
+  // Delete purchase order by id
+  rpc DeleteOrder (DeleteOrderRequest) returns (google.protobuf.Empty);
+}
