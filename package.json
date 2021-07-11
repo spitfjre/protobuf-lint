@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "lint": "docker run --volume \"$(pwd):/workspace\" --workdir /workspace bufbuild/buf lint",
+    "lint:local": "buf lint",
+    "breaking": "docker run --volume \"$(pwd):/workspace\" --workdir /workspace bufbuild/buf breaking --against \".git#branch=master\"",
+    "breaking:local": "buf breaking --against \".git#branch=master\""
+  },
+  "devDependencies": {
+    "prettier": "2.3.2"
+  },
+  "prettier": {
+    "endOfLine": "lf",
+    "printWidth": 120,
+    "proseWrap": "always",
+    "tabWidth": 2,
+    "useTabs": false
+  }
+}
