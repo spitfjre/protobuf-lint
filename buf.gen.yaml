@@ -1,0 +1,14 @@
+version: v1
+managed:
+  enabled: true
+  java_multiple_files: true
+  java_package_prefix: api
+  java_string_check_utf8: false
+  optimize_for: CODE_SIZE
+plugins:
+  - name: java
+    out: gen/proto/java
+  - name: grpc-java
+    out: gen/proto/java
+#    path: /usr/bin/protoc-gen-grpc-java
+

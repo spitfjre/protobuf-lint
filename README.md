@@ -13,44 +13,62 @@ For local installation, follow instructions from [here](https://docs.buf.build/i
 apt install clang-format
 ```
 
-## Usage
-
-### Format
+### Dockerfile (bufbuild/buf patched with protoc)
 
 ```shell
-# Shell (npm run lint:local)
-buf lint
+docker build . -t spitfjre/buf
+```
 
-# Docker (npm run lint)
-docker run --volume "$(pwd):/workspace" --workdir /workspace bufbuild/buf lint
+## Usage
+
+### Format (Check)
+
+```shell
+find . -name \"*.proto\" | sed 's| |\\\\ |g' | xargs clang-format --dry-run --Werror
+# or
+npm run format:check
+```
+
+### Format (Write)
+
+```shell
+find . -name \"*.proto\" | sed 's| |\\\\ |g' | xargs clang-format -i
+# or
+npm run format:write
 ```
 
 ### Build
 
 ```shell
-# Shell (npm run build:local)
-buf build
-
-# Docker (npm run build)
 docker run --volume "$(pwd):/workspace" --workdir /workspace bufbuild/buf build
+# or
+npm run build
 ```
 
 ### Lint
 
 ```shell
-# Shell (npm run lint:local)
-buf lint
-
-# Docker (npm run lint)
 docker run --volume "$(pwd):/workspace" --workdir /workspace bufbuild/buf lint
+# or
+npm run lint
 ```
 
 ### Breaking
 
 ```shell
-# Shell (npm run breaking:local)
-buf breaking --against ".git#branch=master"
-
-# Docker (npm run breaking)
 docker run --volume "$(pwd):/workspace" --workdir /workspace bufbuild/buf breaking --against ".git#branch=master"
+# or
+npm run breaking
 ```
+
+### Generate (Java)
+
+```shell
+docker run --volume "$(pwd):/workspace" --workdir /workspace bufbuild/buf generate
+# or
+npm run generate:code
+```
+
+## TODO
+
+- Generate Documentation (markdown if possible)
