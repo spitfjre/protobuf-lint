@@ -25,7 +25,7 @@ message UpdateUserRequest {
   User user = 2;
 }
 
-message DeleteUserRequest{
+message DeleteUserRequest {
   string username = 1;
 }
 
@@ -45,23 +45,23 @@ message CreateUserRequest {
 // Operations about user
 service UserService {
   // Creates list of users with given input array
-  rpc CreateUsers (CreateUsersRequest) returns (google.protobuf.Empty);
+  rpc CreateUsers(CreateUsersRequest) returns (google.protobuf.Empty);
 
   // Get user by user name
-  rpc GetUser (GetUserRequest)  returns (GetUserResponse);
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
 
   // Updated user
-  rpc UpdateUser (UpdateUserRequest) returns (google.protobuf.Empty);
+  rpc UpdateUser(UpdateUserRequest) returns (google.protobuf.Empty);
 
   // Delete user
-  rpc DeleteUser (DeleteUserRequest) returns (google.protobuf.Empty);
+  rpc DeleteUser(DeleteUserRequest) returns (google.protobuf.Empty);
 
   // Logs user into the system
-  rpc LoginUser (LoginUserRequest) returns (LoginUserResponse);
+  rpc LoginUser(LoginUserRequest) returns (LoginUserResponse);
 
   // Logs out current logged in user session
-  rpc LogoutUser (google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc LogoutUser(google.protobuf.Empty) returns (google.protobuf.Empty);
 
   // Create user
-  rpc CreateUser (CreateUserRequest) returns (google.protobuf.Empty);
+  rpc CreateUser(CreateUserRequest) returns (google.protobuf.Empty);
 }

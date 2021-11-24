@@ -1,12 +1,16 @@
 {
   "scripts": {
+    "format:write": "find . -name \"*.proto\" | sed 's| |\\\\ |g' | xargs clang-format -i",
+    "format:check": "find . -name \"*.proto\" | sed 's| |\\\\ |g' | xargs clang-format --dry-run --Werror",
+    "build": "docker run --volume \"$(pwd):/workspace\" --workdir /workspace bufbuild/buf build",
+    "build:local": "buf build",
     "lint": "docker run --volume \"$(pwd):/workspace\" --workdir /workspace bufbuild/buf lint",
     "lint:local": "buf lint",
     "breaking": "docker run --volume \"$(pwd):/workspace\" --workdir /workspace bufbuild/buf breaking --against \".git#branch=master\"",
     "breaking:local": "buf breaking --against \".git#branch=master\""
   },
   "devDependencies": {
-    "prettier": "2.3.2"
+    "prettier": "2.4.1"
   },
   "prettier": {
     "endOfLine": "lf",

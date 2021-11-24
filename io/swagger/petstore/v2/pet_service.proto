@@ -65,28 +65,30 @@ message DeletePetRequest {
 // Everything about your pets
 service PetService {
   // Uploads an image
-  rpc UploadImage (UploadImageRequest) returns (UploadImageResponse);
+  rpc UploadImage(UploadImageRequest) returns (UploadImageResponse);
 
   // Add a new pet to the store
-  rpc AddPet (AddPetRequest) returns (google.protobuf.Empty);
+  rpc AddPet(AddPetRequest) returns (google.protobuf.Empty);
 
   // Update an existing pet
-  rpc UpdatePet (UpdatePetRequest) returns (google.protobuf.Empty);
+  rpc UpdatePet(UpdatePetRequest) returns (google.protobuf.Empty);
 
   // Finds pets by status
-  rpc FindPetsByStatus (FindPetsByStatusRequest) returns (FindPetsByStatusResponse);
+  rpc FindPetsByStatus(FindPetsByStatusRequest)
+      returns (FindPetsByStatusResponse);
 
   // Finds pets by tags
-  rpc FindPetsByTags (FindPetsByTagsRequest) returns (FindPetsByTagsResponse) {
+  rpc FindPetsByTags(FindPetsByTagsRequest) returns (FindPetsByTagsResponse) {
     option deprecated = true;
   };
 
   // Find pet by id
-  rpc FindPet (FindPetRequest) returns (FindPetResponse);
+  rpc FindPet(FindPetRequest) returns (FindPetResponse);
 
   // Updates a pet in the store with form data
-  rpc UpdatePetWithFormData (UpdatePetWithFormDataRequest) returns (google.protobuf.Empty);
+  rpc UpdatePetWithFormData(UpdatePetWithFormDataRequest)
+      returns (google.protobuf.Empty);
 
   // Deletes a pet
-  rpc DeletePet (DeletePetRequest) returns (google.protobuf.Empty);
+  rpc DeletePet(DeletePetRequest) returns (google.protobuf.Empty);
 }

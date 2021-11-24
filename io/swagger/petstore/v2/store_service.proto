@@ -35,14 +35,14 @@ message DeleteOrderRequest {
 // Access to petstore orders
 service StoreService {
   // Returns pet inventories by status
-  rpc GetInventory (google.protobuf.Empty) returns (GetInventoryResponse);
+  rpc GetInventory(google.protobuf.Empty) returns (GetInventoryResponse);
 
   // Place an order for a pet
-  rpc CreateOrder (CreateOrderRequest) returns (CreateOrderResponse);
+  rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse);
 
   // Find purchase order by id
-  rpc GetOrder (GetOrderRequest) returns (GetOrderResponse);
+  rpc GetOrder(GetOrderRequest) returns (GetOrderResponse);
 
   // Delete purchase order by id
-  rpc DeleteOrder (DeleteOrderRequest) returns (google.protobuf.Empty);
+  rpc DeleteOrder(DeleteOrderRequest) returns (google.protobuf.Empty);
 }
