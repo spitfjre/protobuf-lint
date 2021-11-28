@@ -1,5 +1,10 @@
 # protobuf-lint
 
+## Artifacts
+
+- [HTML Documentation](https://raw.githack.com/spitfjre/protobuf-lint/master/gen/doc/index.html)
+- [Java Source Files](https://github.com/spitfjre/protobuf-lint/tree/master/gen/proto/java/api/io/swagger/petstore/v2)
+
 ## Prerequisites
 
 ### Dockerfile (for formatting protobuf files with clang-format)
