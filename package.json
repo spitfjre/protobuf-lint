@@ -1,12 +1,12 @@
 {
   "scripts": {
-    "docker:build": "docker build . -t spitfjre/buf",
-    "format:write": "find . -name \"*.proto\" | sed 's| |\\\\ |g' | xargs clang-format -i",
-    "format:check": "find . -name \"*.proto\" | sed 's| |\\\\ |g' | xargs clang-format --dry-run --Werror",
-    "build": "docker run --volume \"$(pwd):/workspace\" --workdir /workspace bufbuild/buf build",
-    "lint": "docker run --volume \"$(pwd):/workspace\" --workdir /workspace bufbuild/buf lint",
-    "breaking": "docker run --volume \"$(pwd):/workspace\" --workdir /workspace bufbuild/buf breaking --against \".git#branch=master\"",
-    "generate:code": "docker run --volume \"$(pwd):/workspace\" --workdir /workspace spitfjre/buf generate"
+    "docker:build:fmt": "docker build -f fmt.Dockerfile . -t spitfjre/clang-format",
+    "docker:build:gen": "docker build -f gen.Dockerfile . -t spitfjre/patched-buf",
+    "format:check": "docker run -v \"$(pwd):/workspace\" --workdir /workspace spitfjre/clang-format",
+    "build": "docker run -v \"$(pwd):/workspace\" --workdir /workspace bufbuild/buf build",
+    "lint": "docker run -v \"$(pwd):/workspace\" --workdir /workspace bufbuild/buf lint",
+    "breaking": "docker run -v \"$(pwd):/workspace\" --workdir /workspace bufbuild/buf breaking --against \".git#branch=master\"",
+    "generate": "docker run -v \"$(pwd):/workspace\" --workdir /workspace spitfjre/patched-buf generate"
   },
   "devDependencies": {
     "prettier": "2.4.1"

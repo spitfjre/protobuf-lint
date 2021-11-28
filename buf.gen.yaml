@@ -10,5 +10,5 @@ plugins:
     out: gen/proto/java
   - name: grpc-java
     out: gen/proto/java
-#    path: /usr/bin/protoc-gen-grpc-java
-
+  - name: doc
+    out: gen/doc

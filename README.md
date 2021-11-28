@@ -1,46 +1,37 @@
 # protobuf-lint
 
-## Installation
+## Prerequisites
 
-### Buf
-
-For local installation, follow instructions from [here](https://docs.buf.build/installation/).
-
-### Clang
+### Dockerfile (for formatting protobuf files with clang-format)
 
 ```shell
-# Debian/Ubuntu
-apt install clang-format
+docker build -f fmt.Dockerfile -t spitfjre/clang-format
+# or
+npm run docker:build:fmt
 ```
 
-### Dockerfile (bufbuild/buf patched with protoc)
+### Dockerfile (bufbuild/buf patched with protoc and protoc-plugins)
 
 ```shell
-docker build . -t spitfjre/buf
+docker build -f gen.Dockerfile -t spitfjre/patched-buf
+# or
+npm run docker:build:gen
 ```
 
 ## Usage
 
-### Format (Check)
+### Format-Check
 
 ```shell
-find . -name \"*.proto\" | sed 's| |\\\\ |g' | xargs clang-format --dry-run --Werror
+docker run -v "$(pwd):/workspace" --workdir /workspace spitfjre/clang-format
 # or
 npm run format:check
-```
-
-### Format (Write)
-
-```shell
-find . -name \"*.proto\" | sed 's| |\\\\ |g' | xargs clang-format -i
-# or
-npm run format:write
 ```
 
 ### Build
 
 ```shell
-docker run --volume "$(pwd):/workspace" --workdir /workspace bufbuild/buf build
+docker run -v "$(pwd):/workspace" --workdir /workspace bufbuild/buf build
 # or
 npm run build
 ```
@@ -48,7 +39,7 @@ npm run build
 ### Lint
 
 ```shell
-docker run --volume "$(pwd):/workspace" --workdir /workspace bufbuild/buf lint
+docker run -v "$(pwd):/workspace" --workdir /workspace bufbuild/buf lint
 # or
 npm run lint
 ```
@@ -56,19 +47,15 @@ npm run lint
 ### Breaking
 
 ```shell
-docker run --volume "$(pwd):/workspace" --workdir /workspace bufbuild/buf breaking --against ".git#branch=master"
+docker run -v "$(pwd):/workspace" --workdir /workspace bufbuild/buf breaking --against ".git#branch=master"
 # or
 npm run breaking
 ```
 
-### Generate (Java)
+### Generate (Java+Doc)
 
 ```shell
-docker run --volume "$(pwd):/workspace" --workdir /workspace bufbuild/buf generate
+docker run -v "$(pwd):/workspace" --workdir /workspace spitfjre/buf generate
 # or
-npm run generate:code
+npm run generate
 ```
-
-## TODO
-
-- Generate Documentation (markdown if possible)
