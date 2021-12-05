@@ -7,8 +7,12 @@ managed:
   optimize_for: CODE_SIZE
 plugins:
   - name: java
-    out: gen/proto/java
+    out: gen/proto/java/api.jar
   - name: grpc-java
-    out: gen/proto/java
+    out: gen/proto/java/api.jar
   - name: doc
     out: gen/doc
+    opt: html,index.html
+  - name: doc
+    out: gen/doc
+    opt: markdown,doc.md

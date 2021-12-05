@@ -9,7 +9,7 @@
     "generate": "docker run -v \"$(pwd):/workspace\" --workdir /workspace spitfjre/patched-buf generate"
   },
   "devDependencies": {
-    "prettier": "2.4.1"
+    "prettier": "2.5.1"
   },
   "prettier": {
     "endOfLine": "lf",
