@@ -1,15 +1,14 @@
 {
   "scripts": {
-    "docker:build:fmt": "docker build -f fmt.Dockerfile . -t spitfjre/clang-format",
     "docker:build:gen": "docker build -f gen.Dockerfile . -t spitfjre/patched-buf",
-    "format:check": "docker run -v \"$(pwd):/workspace\" --workdir /workspace spitfjre/clang-format",
+    "format": "docker run -v \"$(pwd):/workspace\" --workdir /workspace bufbuild/buf format -d",
     "build": "docker run -v \"$(pwd):/workspace\" --workdir /workspace bufbuild/buf build",
     "lint": "docker run -v \"$(pwd):/workspace\" --workdir /workspace bufbuild/buf lint",
     "breaking": "docker run -v \"$(pwd):/workspace\" --workdir /workspace bufbuild/buf breaking --against \".git#branch=master\"",
     "generate": "docker run -v \"$(pwd):/workspace\" --workdir /workspace spitfjre/patched-buf generate"
   },
   "devDependencies": {
-    "prettier": "2.5.1"
+    "prettier": "2.7.1"
   },
   "prettier": {
     "endOfLine": "lf",

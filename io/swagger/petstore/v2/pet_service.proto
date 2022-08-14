@@ -71,20 +71,18 @@ service PetService {
   rpc UpdatePet(UpdatePetRequest) returns (google.protobuf.Empty);
 
   // Finds pets by status
-  rpc FindPetsByStatus(FindPetsByStatusRequest)
-      returns (FindPetsByStatusResponse);
+  rpc FindPetsByStatus(FindPetsByStatusRequest) returns (FindPetsByStatusResponse);
 
   // Finds pets by tags
   rpc FindPetsByTags(FindPetsByTagsRequest) returns (FindPetsByTagsResponse) {
     option deprecated = true;
-  };
+  }
 
   // Find pet by id
   rpc FindPet(FindPetRequest) returns (FindPetResponse);
 
   // Updates a pet in the store with form data
-  rpc UpdatePetWithFormData(UpdatePetWithFormDataRequest)
-      returns (google.protobuf.Empty);
+  rpc UpdatePetWithFormData(UpdatePetWithFormDataRequest) returns (google.protobuf.Empty);
 
   // Deletes a pet
   rpc DeletePet(DeletePetRequest) returns (google.protobuf.Empty);

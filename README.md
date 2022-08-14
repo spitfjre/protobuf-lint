@@ -7,14 +7,6 @@
 
 ## Prerequisites
 
-### Dockerfile (for formatting protobuf files with clang-format)
-
-```shell
-docker build -f fmt.Dockerfile -t spitfjre/clang-format
-# or
-npm run docker:build:fmt
-```
-
 ### Dockerfile (bufbuild/buf patched with protoc and protoc-plugins)
 
 ```shell
@@ -28,7 +20,7 @@ npm run docker:build:gen
 ### Format-Check
 
 ```shell
-docker run -v "$(pwd):/workspace" --workdir /workspace spitfjre/clang-format
+docker run -v "$(pwd):/workspace" --workdir /workspace bufbuild/buf format -d
 # or
 npm run format:check
 ```
